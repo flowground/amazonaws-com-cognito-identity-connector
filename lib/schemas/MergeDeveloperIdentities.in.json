@@ -1,0 +1,79 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input to the <code>MergeDeveloperIdentities</code> action.",
+            "properties": {
+                "DestinationUserIdentifier": {
+                    "description": "User identifier for the destination user. The value should be a <code>DeveloperUserIdentifier</code>.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "DeveloperProviderName": {
+                    "description": "The \"domain\" by which Cognito will refer to your users. This is a (pseudo) domain name that you provide while creating an identity pool. This name acts as a placeholder that allows your backend and the Cognito service to communicate about the developer provider. For the <code>DeveloperProviderName</code>, you can use letters as well as period (.), underscore (_), and dash (-).",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[\\w._-]+",
+                    "type": "string"
+                },
+                "IdentityPoolId": {
+                    "description": "An identity pool ID in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                },
+                "SourceUserIdentifier": {
+                    "description": "User identifier for the source user. The value should be a <code>DeveloperUserIdentifier</code>.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                }
+            },
+            "required": [
+                "SourceUserIdentifier",
+                "DestinationUserIdentifier",
+                "DeveloperProviderName",
+                "IdentityPoolId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

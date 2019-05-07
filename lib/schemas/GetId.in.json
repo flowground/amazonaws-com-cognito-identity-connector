@@ -1,0 +1,84 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input to the GetId action.",
+            "properties": {
+                "AccountId": {
+                    "description": "A standard AWS account ID (9+ digits).",
+                    "maxLength": 15,
+                    "minLength": 1,
+                    "pattern": "\\d+",
+                    "type": "string"
+                },
+                "IdentityPoolId": {
+                    "description": "An identity pool ID in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                },
+                "Logins": {
+                    "description": "<p>A set of optional name-value pairs that map provider names to provider tokens. The available provider names for <code>Logins</code> are as follows:</p> <ul> <li> <p>Facebook: <code>graph.facebook.com</code> </p> </li> <li> <p>Amazon Cognito Identity Provider: <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code> </p> </li> <li> <p>Google: <code>accounts.google.com</code> </p> </li> <li> <p>Amazon: <code>www.amazon.com</code> </p> </li> <li> <p>Twitter: <code>api.twitter.com</code> </p> </li> <li> <p>Digits: <code>www.digits.com</code> </p> </li> </ul>",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "value": {
+                                "maxLength": 50000,
+                                "minLength": 1,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maxItems": 10,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "IdentityPoolId"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

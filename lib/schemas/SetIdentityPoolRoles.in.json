@@ -1,0 +1,173 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input to the <code>SetIdentityPoolRoles</code> action.",
+            "properties": {
+                "IdentityPoolId": {
+                    "description": "An identity pool ID in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                },
+                "RoleMappings": {
+                    "description": "<p>How users for a specific identity provider are to mapped to roles. This is a string to <a>RoleMapping</a> object map. The string identifies the identity provider, for example, \"graph.facebook.com\" or \"cognito-idp-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id\".</p> <p>Up to 25 rules can be specified per identity provider.</p>",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "value": {
+                                "description": "A role mapping.",
+                                "properties": {
+                                    "AmbiguousRoleResolution": {
+                                        "description": "<p>If you specify Token or Rules as the <code>Type</code>, <code>AmbiguousRoleResolution</code> is required.</p> <p>Specifies the action to be taken if either no rules match the claim value for the <code>Rules</code> type, or there is no <code>cognito:preferred_role</code> claim and there are multiple <code>cognito:roles</code> matches for the <code>Token</code> type.</p>",
+                                        "enum": [
+                                            "AuthenticatedRole",
+                                            "Deny"
+                                        ],
+                                        "type": "string"
+                                    },
+                                    "RulesConfiguration": {
+                                        "description": "<p>The rules to be used for mapping users to roles.</p> <p>If you specify Rules as the role mapping type, <code>RulesConfiguration</code> is required.</p>",
+                                        "properties": {
+                                            "Rules": {
+                                                "description": "<p>An array of rules. You can specify up to 25 rules per identity provider.</p> <p>Rules are evaluated in order. The first one to match specifies the role.</p>",
+                                                "items": {
+                                                    "description": "A rule that maps a claim name, a claim value, and a match type to a role ARN.",
+                                                    "properties": {
+                                                        "Claim": {
+                                                            "description": "The claim name that must be present in the token, for example, \"isAdmin\" or \"paid\".",
+                                                            "maxLength": 64,
+                                                            "minLength": 1,
+                                                            "pattern": "[\\p{L}\\p{M}\\p{S}\\p{N}\\p{P}]+",
+                                                            "type": "string"
+                                                        },
+                                                        "MatchType": {
+                                                            "description": "The match condition that specifies how closely the claim value in the IdP token must match <code>Value</code>.",
+                                                            "enum": [
+                                                                "Equals",
+                                                                "Contains",
+                                                                "StartsWith",
+                                                                "NotEqual"
+                                                            ],
+                                                            "type": "string"
+                                                        },
+                                                        "RoleARN": {
+                                                            "description": "The role ARN.",
+                                                            "maxLength": 2048,
+                                                            "minLength": 20,
+                                                            "type": "string"
+                                                        },
+                                                        "Value": {
+                                                            "description": "A brief string that the claim must match, for example, \"paid\" or \"yes\".",
+                                                            "maxLength": 128,
+                                                            "minLength": 1,
+                                                            "type": "string"
+                                                        }
+                                                    },
+                                                    "required": [
+                                                        "Claim",
+                                                        "MatchType",
+                                                        "Value",
+                                                        "RoleARN"
+                                                    ],
+                                                    "type": "object"
+                                                },
+                                                "maxItems": 25,
+                                                "minItems": 1,
+                                                "type": "array"
+                                            }
+                                        },
+                                        "required": [
+                                            "Rules"
+                                        ],
+                                        "type": "object"
+                                    },
+                                    "Type": {
+                                        "description": "The role mapping type. Token will use <code>cognito:roles</code> and <code>cognito:preferred_role</code> claims from the Cognito identity provider token to map groups to roles. Rules will attempt to match claims from the token to map to a role.",
+                                        "enum": [
+                                            "Token",
+                                            "Rules"
+                                        ],
+                                        "type": "string"
+                                    }
+                                },
+                                "required": [
+                                    "Type"
+                                ],
+                                "type": "object"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maxItems": 10,
+                    "type": "array"
+                },
+                "Roles": {
+                    "description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\" and the value will be the Role ARN.",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "pattern": "(un)?authenticated",
+                                "type": "string"
+                            },
+                            "value": {
+                                "maxLength": 2048,
+                                "minLength": 20,
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maxItems": 2,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "IdentityPoolId",
+                "Roles"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

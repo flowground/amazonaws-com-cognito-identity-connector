@@ -1,0 +1,144 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "An object representing an Amazon Cognito identity pool.",
+            "properties": {
+                "AllowUnauthenticatedIdentities": {
+                    "description": "TRUE if the identity pool supports unauthenticated logins.",
+                    "type": "boolean"
+                },
+                "CognitoIdentityProviders": {
+                    "description": "A list representing an Amazon Cognito Identity User Pool and its client ID.",
+                    "items": {
+                        "description": "A provider representing an Amazon Cognito Identity User Pool and its client ID.",
+                        "properties": {
+                            "ClientId": {
+                                "description": "The client ID for the Amazon Cognito Identity User Pool.",
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "pattern": "[\\w_]+",
+                                "type": "string"
+                            },
+                            "ProviderName": {
+                                "description": "The provider name for an Amazon Cognito Identity User Pool. For example, <code>cognito-idp.us-east-1.amazonaws.com/us-east-1_123456789</code>.",
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "pattern": "[\\w._:/-]+",
+                                "type": "string"
+                            },
+                            "ServerSideTokenCheck": {
+                                "description": "TRUE if server-side token validation is enabled for the identity provider’s token.",
+                                "type": "boolean"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "type": "array"
+                },
+                "DeveloperProviderName": {
+                    "description": "The \"domain\" by which Cognito will refer to your users.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[\\w._-]+",
+                    "type": "string"
+                },
+                "IdentityPoolId": {
+                    "description": "An identity pool ID in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                },
+                "IdentityPoolName": {
+                    "description": "A string that you provide.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[\\w ]+",
+                    "type": "string"
+                },
+                "OpenIdConnectProviderARNs": {
+                    "description": "A list of OpendID Connect provider ARNs.",
+                    "items": {
+                        "maxLength": 2048,
+                        "minLength": 20,
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "SamlProviderARNs": {
+                    "description": "An array of Amazon Resource Names (ARNs) of the SAML provider for your identity pool.",
+                    "items": {
+                        "maxLength": 2048,
+                        "minLength": 20,
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
+                "SupportedLoginProviders": {
+                    "description": "Optional key:value pairs mapping provider names to provider app IDs.",
+                    "items": {
+                        "properties": {
+                            "key": {
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "type": "string"
+                            },
+                            "value": {
+                                "maxLength": 128,
+                                "minLength": 1,
+                                "pattern": "[\\w.;_/-]+",
+                                "type": "string"
+                            }
+                        },
+                        "type": "object"
+                    },
+                    "maxItems": 10,
+                    "type": "array"
+                }
+            },
+            "required": [
+                "IdentityPoolId",
+                "IdentityPoolName",
+                "AllowUnauthenticatedIdentities"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}

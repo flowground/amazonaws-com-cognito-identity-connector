@@ -1,0 +1,80 @@
+{
+    "type": "object",
+    "properties": {
+        "Action": {
+            "required": true,
+            "type": "string"
+        },
+        "Version": {
+            "required": true,
+            "type": "string"
+        },
+        "requestBody": {
+            "description": "Input to the <code>UnlinkDeveloperIdentity</code> action.",
+            "properties": {
+                "DeveloperProviderName": {
+                    "description": "The \"domain\" by which Cognito will refer to your users.",
+                    "maxLength": 128,
+                    "minLength": 1,
+                    "pattern": "[\\w._-]+",
+                    "type": "string"
+                },
+                "DeveloperUserIdentifier": {
+                    "description": "A unique ID used by your backend authentication process to identify a user.",
+                    "maxLength": 1024,
+                    "minLength": 1,
+                    "type": "string"
+                },
+                "IdentityId": {
+                    "description": "A unique identifier in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                },
+                "IdentityPoolId": {
+                    "description": "An identity pool ID in the format REGION:GUID.",
+                    "maxLength": 55,
+                    "minLength": 1,
+                    "pattern": "[\\w-]+:[0-9a-f-]+",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "IdentityId",
+                "IdentityPoolId",
+                "DeveloperProviderName",
+                "DeveloperUserIdentifier"
+            ],
+            "type": "object"
+        },
+        "X_Amz_Content_Sha256": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Date": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Algorithm": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Credential": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Security_Token": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_Signature": {
+            "required": false,
+            "type": "string"
+        },
+        "X_Amz_SignedHeaders": {
+            "required": false,
+            "type": "string"
+        }
+    }
+}
